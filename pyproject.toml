@@ -1,0 +1,64 @@
+[tool.poetry]
+name = "iceberg-test"
+version = "0.1.0"
+description = "Apache Iceberg 테스트 프로젝트"
+authors = ["kangyou.choi <zeta9044@gmail.com>"]
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/yourusername/iceberg-test"
+documentation = "https://iceberg-test.readthedocs.io"
+packages = [{include = "iceberg_test", from = "src"}]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pyiceberg = "^0.9.0"    # pyiceberg 버전을 최신 버전인 0.9.0으로 업데이트하여 rich 의존성과 맞춤
+pandas = "^2.0.0"
+numpy = "^1.24.0"
+typer = "^0.9.0"
+rich = "^13.5.0"       # rich 버전을 14.x가 아닌 13.x 범위로 낮춤
+click = "^8.1.6"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+black = "^23.3.0"
+isort = "^5.12.0"
+mypy = "^1.3.0"
+pytest-cov = "^4.1.0"
+pre-commit = "^3.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+iceberg-test = "iceberg_test.__main__:app"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+python_classes = "Test*"
+addopts = "--cov=iceberg_test --cov-report=xml --cov-report=term"
