@@ -19,7 +19,7 @@ def validate_table_name(table_name: str) -> bool:
         bool: 테이블 이름이 유효하면 True, 그렇지 않으면 False
     """
     # 테이블 이름 규칙: 문자, 숫자, 언더스코어만 허용하고, 문자로 시작해야 함
-    pattern = re.compile(r'^[a-zA-Z][a-zA-Z0-9_]*)
+    pattern = re.compile(r'^[a-zA-Z][a-zA-Z0-9_]*')
     return bool(pattern.match(table_name))
 
 
@@ -34,7 +34,7 @@ def validate_namespace(namespace: str) -> bool:
         bool: 네임스페이스가 유효하면 True, 그렇지 않으면 False
     """
     # 네임스페이스 규칙: 문자, 숫자, 언더스코어, 점만 허용
-    pattern = re.compile(r'^[a-zA-Z][a-zA-Z0-9_.]*)
+    pattern = re.compile(r'^[a-zA-Z][a-zA-Z0-9_.]*')
     return bool(pattern.match(namespace))
 
 
@@ -115,7 +115,7 @@ def validate_column_names(column_names: List[str]) -> List[str]:
     invalid_columns = []
     
     # 열 이름 규칙: 문자, 숫자, 언더스코어만 허용하고, 문자로 시작해야 함
-    pattern = re.compile(r'^[a-zA-Z][a-zA-Z0-9_]*)
+    pattern = re.compile(r'^[a-zA-Z][a-zA-Z0-9_]*')
     
     for col in column_names:
         if not pattern.match(col):

@@ -2,7 +2,7 @@
 스키마 데이터 모델을 정의하는 모듈.
 """
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Union
+from typing import Dict, List, Optional, Union
 
 from pyiceberg.types import (
     BooleanType,
@@ -13,7 +13,8 @@ from pyiceberg.types import (
     LongType,
     StringType,
     TimestampType,
-    Type,
+    IcebergType,
+
 )
 
 
@@ -29,7 +30,7 @@ class SchemaField:
     name: str
     
     # 필드 타입
-    type: Union[Type, str]
+    type: Union[IcebergType, str]
     
     # 필수 여부
     required: bool = True
@@ -44,7 +45,7 @@ class SchemaField:
         if isinstance(self.type, str):
             self.type = self._string_to_type(self.type)
     
-    def _string_to_type(self, type_str: str) -> Type:
+    def _string_to_type(self, type_str: str) -> IcebergType:
         """
         문자열 타입을 Iceberg 타입 객체로 변환합니다.
         
