@@ -4,8 +4,7 @@
 import pytest
 from unittest.mock import patch, MagicMock
 
-from pyiceberg.table import Table
-from pyiceberg.transaction import Transaction
+from pyiceberg.table import Table, Transaction
 
 from iceberg_test.core.transaction import (
     create_transaction,
